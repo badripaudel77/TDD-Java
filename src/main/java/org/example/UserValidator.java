@@ -9,8 +9,14 @@ public class UserValidator {
             throw new NullPointerException("Input can't be empty");
         }
 
-        if(age <18 || name.trim().length()<3 || phoneNumber.trim().length() <14) return false;
+        if((age <18 && age >0) || name.trim().length()<3 || phoneNumber.trim().length() <14) return false;
         if(!phoneNumber.trim().startsWith("+")|| phoneNumber.trim().contains(" ")) return false;
+
+        // refactor logic to check if invalid input ....
+
+        if(age <0) {
+            throw new RuntimeException("Age can't be negative");
+        }
         return  true;
     }
 }

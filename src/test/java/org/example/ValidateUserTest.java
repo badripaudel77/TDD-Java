@@ -32,11 +32,24 @@ public class ValidateUserTest {
 
     }
 
+   // @Test // fail the test first
     @Test(expected = NullPointerException.class)
     public void validateUserWhenOneFieldIsEmpty() {
         int age = 33;
         String name = "";
         String phoneNumber = "+9771234567890";
+
+        UserValidator userValidator = new UserValidator();
+        boolean isUserValid = userValidator.validateUser(age, name, phoneNumber);
+        Assert.assertEquals(true, isUserValid);
+    }
+
+     // @Test // fail the test first
+     @Test(expected = RuntimeException.class)
+    public void validateUserWhenInvalidInput() {
+        int age = -12;
+        String name = "John";
+        String phoneNumber = "+97712345678JR";
 
         UserValidator userValidator = new UserValidator();
         boolean isUserValid = userValidator.validateUser(age, name, phoneNumber);
