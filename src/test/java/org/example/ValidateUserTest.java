@@ -31,4 +31,15 @@ public class ValidateUserTest {
         Assert.assertEquals(true, isUserValid); // expected : true, actual : isUserValid
 
     }
+
+    @Test(expected = NullPointerException.class)
+    public void validateUserWhenOneFieldIsEmpty() {
+        int age = 33;
+        String name = "";
+        String phoneNumber = "+9771234567890";
+
+        UserValidator userValidator = new UserValidator();
+        boolean isUserValid = userValidator.validateUser(age, name, phoneNumber);
+        Assert.assertEquals(true, isUserValid);
+    }
 }
